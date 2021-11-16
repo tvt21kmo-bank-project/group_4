@@ -1,7 +1,7 @@
 const db = require('../database');
 const bcrypt = require('bcryptjs');
 
-//const saltRounds = 10;
+const saltRounds = 10;
 const kortti={
     get: function(callback) {
         return db.query('select * from kortti', callback);
@@ -10,7 +10,7 @@ const kortti={
         return db.query('select * from kortti where idKortti=?', [id], callback);
     },
     add: function(kortti, callback) {
-        return db.query('insert into kortti (idKortti, pin, idAsiakas) values (?,?,?)', [asiakas.enimi, asiakas.snimi, asiakas.osoite, asiakas.puhnro], callback);
+        return db.query('insert into kortti (pin) values (?) where idAsiakas=?', [kortti.pin, kortti.idAsiakas], callback);
     },
     delete: function(id, callback) {
         return db.query('delete from kortti where idKortti=?', [id], callback);

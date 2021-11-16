@@ -10,7 +10,7 @@ const tili={
         return db.query('select * from tili where idTili=?', [id], callback);
     },
     add: function(tili, callback) {
-        return db.query('insert into tili (idTili, saldo, credit, luottoraja, idKortti) values (?,?,?,?,?)', [tili.idTili, tili.saldo, tili.credit, tili.luottoraja, idKortti], callback);
+        return db.query('insert into tili (saldo, credit, luottoraja, idKortti) values (?,?,?,?)', [tili.saldo, tili.credit, tili.luottoraja, idKortti], callback);
     },
     delete: function(id, callback) {
         return db.query('delete from tili where idTili=?', [id], callback);
