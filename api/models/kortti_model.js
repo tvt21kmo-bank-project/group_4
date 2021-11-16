@@ -10,7 +10,7 @@ const kortti={
         return db.query('select * from kortti where idKortti=?', [id], callback);
     },
     add: function(kortti, callback) {
-        return db.query('insert into kortti (pin) values (?) where idAsiakas=?', [kortti.pin, kortti.idAsiakas], callback);
+        return db.query('insert into kortti (pin, idAsiakas) values (?, ?)', [kortti.pin, kortti.idAsiakas], callback);
     },
     delete: function(id, callback) {
         return db.query('delete from kortti where idKortti=?', [id], callback);
