@@ -19,5 +19,4 @@ const tili={
         return db.query('update tili set saldo=?, credit=?, luottoraja=?, idKortti=?, where idTili=?', [tili.idTili, tili.saldo, tili.credit, tili.luottoraja, tili.idKortti], callback);
     }
 }
-
 module.exports = tili;

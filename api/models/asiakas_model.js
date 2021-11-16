@@ -19,5 +19,4 @@ const asiakas={
         return db.query('update asiakas set idAsiakas=?, nimi=?, osoite=?, puhelin_numero=? where idAsiakas=?', [asiakas.enimi, asiakas.snimi, asiakas.osoite, asiakas.puhnro, id], callback);
     }
 }
-
 module.exports = asiakas;

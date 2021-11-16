@@ -19,5 +19,4 @@ const kortti={
         return db.query('update kortti set idAsiakas=?, pin=?, where idKortti=?', [kortti.idKortti, kortti.pin, kortti.idAsiakas], callback);
     }
 }
-
 module.exports = kortti;
