@@ -1,7 +1,7 @@
 const db = require('../database');
 const bcrypt = require('bcryptjs');
 
-//const saltRounds = 10;
+const saltRounds = 10;
 const tili={
     get: function(callback) {
         return db.query('select * from tili', callback);
@@ -16,7 +16,7 @@ const tili={
         return db.query('delete from tili where idTili=?', [id], callback);
     },
     update: function(id, tili, callback) {
-        return db.query('update tili set saldo=?, credit=?, luottoraja=?, idKortti=?, where idTili=?', [tili.idTili, tili.saldo, tili.credit, tili.luottoraja, tili.idKortti], callback);
+        return db.query('update tili set saldo=?, credit=?, luottoraja=?, idKortti=? where idTili=?', [tili.saldo, tili.credit, tili.luottoraja, tili.idKortti, id], callback);
     }
 }
 module.exports = tili;

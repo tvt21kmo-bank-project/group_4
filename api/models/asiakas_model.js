@@ -16,7 +16,7 @@ const asiakas={
         return db.query('delete from asiakas where idAsiakas=?', [id], callback);
     },
     update: function(id, asiakas, callback) {
-        return db.query('update asiakas set idAsiakas=?, nimi=?, osoite=?, puhelin_numero=? where idAsiakas=?', [asiakas.enimi, asiakas.snimi, asiakas.osoite, asiakas.puhnro, id], callback);
+        return db.query('update asiakas set enimi=?, snimi=?, osoite=?, puhnro=? where idAsiakas=?', [asiakas.enimi, asiakas.snimi, asiakas.osoite, asiakas.puhnro, id], callback);
     }
 }
 module.exports = asiakas;

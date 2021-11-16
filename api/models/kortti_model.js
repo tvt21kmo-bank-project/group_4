@@ -16,7 +16,7 @@ const kortti={
         return db.query('delete from kortti where idKortti=?', [id], callback);
     },
     update: function(id, kortti, callback) {
-        return db.query('update kortti set idAsiakas=?, pin=?, where idKortti=?', [kortti.idKortti, kortti.pin, kortti.idAsiakas], callback);
+        return db.query('update kortti set pin=?, idAsiakas=? where idKortti=?', [kortti.pin, kortti.idAsiakas, id], callback);
     }
 }
 module.exports = kortti;
