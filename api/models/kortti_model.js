@@ -20,8 +20,8 @@ const kortti={
   },
   update: function(id, kortti, callback) {
     bcrypt.hash(kortti.pin, saltRounds, function(err, hash) {
-      return db.query('update kortti set idKortti=?, pin=? where idTili=?',
-      [kortti.idKortti, hash, id], callback);
+      return db.query('update kortti set pin=? where idKortti=?',
+      [hash, id], callback);
     });
   }
 
