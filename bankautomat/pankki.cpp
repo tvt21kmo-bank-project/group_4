@@ -19,7 +19,7 @@ void Pankki::on_btnDebit_clicked()
     json.insert("id1",ui->leDebitMaksaja->text());
     json.insert("id2",ui->leDebitSaaja->text());
     json.insert("summa",ui->leDebitSumma->text());
-    QString site_url="http://localhost:3000/bank/debit_transfer";
+    QString site_url="http://localhost:3000/siirto/debit_transfer";
     QString credentials="newAdmin:newPass";
     QNetworkRequest request((site_url));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
