@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "pankki.h"
+#include "valikko.h"
 
 #include <QMainWindow>
 #include <QtNetwork>
@@ -30,12 +31,14 @@ private slots:
 
     void on_btnLogin_clicked();
 
+
 private:
     Ui::MainWindow *ui;
     QNetworkAccessManager *manager;
     QNetworkAccessManager *oneBookManager;
     QNetworkAccessManager *loginManager;
     QNetworkReply *reply;
-    Pankki *objPankki;
+    Valikko *objValikko;
+
 };
 #endif // MAINWINDOW_H
