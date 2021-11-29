@@ -6,15 +6,16 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    objPankki=new Pankki;
+    objValikko=new Valikko;
+    //objPankki=new Pankki;
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
     ui=nullptr;
-    delete objPankki;
-    objPankki=nullptr;
+    //delete objPankki;
+    //objPankki=nullptr;
 }
 
 
@@ -98,7 +99,9 @@ void MainWindow::loginSlot(QNetworkReply *reply)
     qDebug()<<response_data;
     if(response_data=="true"){
         qDebug()<<"Oikea tunnus ...avaa form";
-        objPankki->show();
+        this->close();
+        objValikko->show();
+        //objPankki->show();
     }
     else {
         ui->lineEditPassword->setText("");
@@ -106,3 +109,5 @@ void MainWindow::loginSlot(QNetworkReply *reply)
         qDebug()<<"tunnus ja salasana ei täsmää";
     }
 }
+
+

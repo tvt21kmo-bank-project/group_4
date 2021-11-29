@@ -12,15 +12,18 @@ CONFIG += c++11
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    pankki.cpp
+    pankki.cpp \
+    valikko.cpp
 
 HEADERS += \
     mainwindow.h \
-    pankki.h
+    pankki.h \
+    valikko.h
 
 FORMS += \
     mainwindow.ui \
-    pankki.ui
+    pankki.ui \
+    valikko.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
