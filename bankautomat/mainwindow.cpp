@@ -46,7 +46,7 @@ void MainWindow::getBookSlot(QNetworkReply *reply)
     book+=QString::number(json_obj["id_book"].toInt())+","+json_obj["name"].toString()+","+json_obj["author"].toString()+"\r";
     }
     qDebug()<<book;
-    ui->txtBooks->setText(book);
+    /*ui->txtBooks->setText(book);*/
     reply->deleteLater();
     manager->deleteLater();
 }
@@ -72,7 +72,7 @@ void MainWindow::getOneBookSlot(QNetworkReply *reply)
     QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
     qDebug()<<json_doc["name"];
     QString book=json_doc["name"].toString()+" : "+json_doc["author"].toString()+" : "+json_doc["isbn"].toString();
-    ui->txtBooks->setText(book);
+    /*ui->txtBooks->setText(book);*/
 }
 
 
@@ -99,14 +99,17 @@ void MainWindow::loginSlot(QNetworkReply *reply)
     qDebug()<<response_data;
     if(response_data=="true"){
         qDebug()<<"Oikea tunnus ...avaa form";
+        ui->labelLoginDebug->setText("Kirjautumistiedot oikein, avataan pankki.");
         this->close();
+        QThread::msleep(2000);
         objValikko->show();
-        //objPankki->show();
     }
     else {
         ui->lineEditPassword->setText("");
         ui->lineEditUsername->setText("");
         qDebug()<<"tunnus ja salasana ei täsmää";
+        ui->labelLoginDebug->setText("Kirjautumistiedot väärin!");
+        QThread::msleep(1500);
     }
 }
 
