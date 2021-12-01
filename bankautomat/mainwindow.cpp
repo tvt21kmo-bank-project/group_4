@@ -19,7 +19,7 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::on_btnShowBooks_clicked()
+/*void MainWindow::on_btnShowBooks_clicked()
 {
     QString site_url="http://localhost:3000/book";
     QString credentials="newAdmin:newPass";
@@ -32,9 +32,9 @@ void MainWindow::on_btnShowBooks_clicked()
     connect(manager, SIGNAL(finished (QNetworkReply*)),
     this, SLOT(getBookSlot(QNetworkReply*)));
     reply = manager->get(request);
-}
+}*/
 
-void MainWindow::getBookSlot(QNetworkReply *reply)
+/*void MainWindow::getBookSlot(QNetworkReply *reply)
 {
     QByteArray response_data=reply->readAll();
 
@@ -47,12 +47,13 @@ void MainWindow::getBookSlot(QNetworkReply *reply)
     }
     qDebug()<<book;
     /*ui->txtBooks->setText(book);*/
-    reply->deleteLater();
-    manager->deleteLater();
-}
+    //reply->deleteLater();
+    //manager->deleteLater();
+//}
 
 
-void MainWindow::on_btnShowOneBook_clicked()
+
+/*void MainWindow::on_btnShowOneBook_clicked()
 {
     QString site_url="http://localhost:3000/book/1";
     QString credentials="newAdmin:newPass";
@@ -73,7 +74,7 @@ void MainWindow::getOneBookSlot(QNetworkReply *reply)
     qDebug()<<json_doc["name"];
     QString book=json_doc["name"].toString()+" : "+json_doc["author"].toString()+" : "+json_doc["isbn"].toString();
     /*ui->txtBooks->setText(book);*/
-}
+//}
 
 void MainWindow::on_btnLogin_clicked()
 {

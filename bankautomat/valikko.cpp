@@ -44,6 +44,7 @@ void Valikko::on_btnKirjauduUlos_clicked()
 {
     this->close();
 
+
 }
 
 
@@ -66,8 +67,17 @@ void Valikko::naytaAsiakasTiedotSlot(QNetworkReply *reply)
 {
     QByteArray response_data=reply->readAll();
     QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
-    qDebug()<<json_doc;
-    QString asiakas=json_doc["enimi"].toString()+" : "+json_doc["snimi"].toString()+" : "+json_doc["osoite"].toString()+" : "+json_doc["puhno"].toString();
+    //qDebug()<<json_doc;
+    QJsonArray json_array = json_doc.array();
+    QString asiakas;
+    foreach (const QJsonValue &value, json_array) {
+    QJsonObject json_obj = value.toObject();
+    asiakas+=QString(json_obj["enimi"].toString())+" : "+json_obj["snimi"].toString()+" : "+json_obj["osoite"].toString()+" : "+json_obj["puhnro"].toString();
+    }
     ui->textEditNaytaAsiakasTiedot->setText(asiakas);
+
+    /*ui->txtBooks->setText(book);*/
+    //reply->deleteLater();
+    //manager->deleteLater();
 }
 
