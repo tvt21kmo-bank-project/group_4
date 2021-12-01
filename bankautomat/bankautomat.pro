@@ -13,17 +13,20 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     pankki.cpp \
-    valikko.cpp
+    valikko.cpp \
+    nosto.cpp
 
 HEADERS += \
     mainwindow.h \
     pankki.h \
-    valikko.h
+    valikko.h \
+    nosto.h
 
 FORMS += \
     mainwindow.ui \
     pankki.ui \
-    valikko.ui
+    valikko.ui \
+    nosto.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
