@@ -29,11 +29,16 @@ private slots:
 
     void on_btnTapahtumat_clicked();
 
+    void on_btnKirjauduUlos_clicked();
 
+    void on_btnNaytaAsiakasTiedot_clicked();
+    void naytaAsiakasTiedotSlot (QNetworkReply *reply);
 
 private:
     Ui::Valikko *ui;
     Pankki *objPankki;
+    QNetworkAccessManager *naytaAsiakasTiedotManager;
+    QNetworkReply *reply;
     int valinta;
 };
 

@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">labelMainTitle {text-align: center}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLineEdit" name="lineEditUsername">
@@ -65,7 +65,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Login</string>
+     <string>Kirjaudu</string>
     </property>
    </widget>
    <widget class="QLabel" name="labelMainTitle">
@@ -128,7 +128,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Login to bank</string>
+     <string>Kirjaudu pankkiin</string>
     </property>
    </widget>
    <widget class="QLabel" name="labelLoginDebug">
@@ -136,7 +136,7 @@
      <rect>
       <x>50</x>
       <y>200</y>
-      <width>261</width>
+      <width>371</width>
       <height>31</height>
      </rect>
     </property>

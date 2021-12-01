@@ -75,7 +75,6 @@ void MainWindow::getOneBookSlot(QNetworkReply *reply)
     /*ui->txtBooks->setText(book);*/
 }
 
-
 void MainWindow::on_btnLogin_clicked()
 {
     QJsonObject json; //luodaan JSON objekti ja lisätään data
@@ -89,9 +88,13 @@ void MainWindow::on_btnLogin_clicked()
     QString headerData = "Basic " + data;
     request.setRawHeader( "Authorization", headerData.toLocal8Bit() );
     loginManager = new QNetworkAccessManager(this);
-    connect(loginManager, SIGNAL(finished (QNetworkReply*)),
-    this, SLOT(loginSlot(QNetworkReply*)));
+    connect(loginManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(loginSlot(QNetworkReply*)));
     reply = loginManager->post(request, QJsonDocument(json).toJson());
+    // Tallennetaan käyttäjätunnus lineEditUsername-kentästä muuttujaan
+    //QString userID = ui->lineEditUsername->text();
+    // Tai sama suoraan integeriks
+    korttiID = ui->lineEditUsername->text().toInt();
+    qDebug()<<korttiID;
 }
 void MainWindow::loginSlot(QNetworkReply *reply)
 {
@@ -100,8 +103,8 @@ void MainWindow::loginSlot(QNetworkReply *reply)
     if(response_data=="true"){
         qDebug()<<"Oikea tunnus ...avaa form";
         ui->labelLoginDebug->setText("Kirjautumistiedot oikein, avataan pankki.");
+        //QThread::msleep(2000);
         this->close();
-        QThread::msleep(2000);
         objValikko->show();
     }
     else {
@@ -109,7 +112,7 @@ void MainWindow::loginSlot(QNetworkReply *reply)
         ui->lineEditUsername->setText("");
         qDebug()<<"tunnus ja salasana ei täsmää";
         ui->labelLoginDebug->setText("Kirjautumistiedot väärin!");
-        QThread::msleep(1500);
+        //QThread::msleep(1500);
     }
 }
 

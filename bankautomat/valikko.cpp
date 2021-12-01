@@ -39,3 +39,35 @@ void Valikko::on_btnTapahtumat_clicked()
     valinta=4;
 }
 
+
+void Valikko::on_btnKirjauduUlos_clicked()
+{
+    this->close();
+
+}
+
+
+void Valikko::on_btnNaytaAsiakasTiedot_clicked()
+{
+    QString site_url="http://localhost:3000/asiakas/1";
+    QString credentials="newAdmin:newPass";
+    QNetworkRequest request((site_url));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    QByteArray data = credentials.toLocal8Bit().toBase64();
+    QString headerData = "Basic " + data;
+    request.setRawHeader( "Authorization", headerData.toLocal8Bit() );
+    naytaAsiakasTiedotManager = new QNetworkAccessManager(this);
+    connect(naytaAsiakasTiedotManager, SIGNAL(finished (QNetworkReply*)),
+    this, SLOT(naytaAsiakasTiedotSlot(QNetworkReply*)));
+    reply = naytaAsiakasTiedotManager->get(request);
+}
+
+void Valikko::naytaAsiakasTiedotSlot(QNetworkReply *reply)
+{
+    QByteArray response_data=reply->readAll();
+    QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
+    qDebug()<<json_doc;
+    QString asiakas=json_doc["enimi"].toString()+" : "+json_doc["snimi"].toString()+" : "+json_doc["osoite"].toString()+" : "+json_doc["puhno"].toString();
+    ui->textEditNaytaAsiakasTiedot->setText(asiakas);
+}
+

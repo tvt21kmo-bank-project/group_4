@@ -89,6 +89,68 @@
     <string>Group IV Lehman Brothers</string>
    </property>
   </widget>
+  <widget class="QLabel" name="labelMainMenuWelcome">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>80</y>
+     <width>181</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Tervetuloa pankkiin!</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelMainMenuCustomerInfoTitle">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>80</y>
+     <width>181</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Asiakas</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEditNaytaAsiakasTiedot">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>110</y>
+     <width>301</width>
+     <height>221</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnKirjauduUlos">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>440</y>
+     <width>111</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Kirjaudu ulos</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnNaytaAsiakasTiedot">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>340</y>
+     <width>301</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Näytä omat tietoni</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
