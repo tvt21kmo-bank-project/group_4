@@ -20,7 +20,7 @@ MainWindow::~MainWindow()
 }
 
 
-/*void MainWindow::on_btnShowBooks_clicked()
+void MainWindow::on_btnShowBooks_clicked()
 {
     QString site_url="http://localhost:3000/book";
     QString credentials="newAdmin:newPass";
@@ -33,9 +33,9 @@ MainWindow::~MainWindow()
     connect(manager, SIGNAL(finished (QNetworkReply*)),
     this, SLOT(getBookSlot(QNetworkReply*)));
     reply = manager->get(request);
-}*/
+}
 
-/*void MainWindow::getBookSlot(QNetworkReply *reply)
+void MainWindow::getBookSlot(QNetworkReply *reply)
 {
     QByteArray response_data=reply->readAll();
 
@@ -48,13 +48,12 @@ MainWindow::~MainWindow()
     }
     qDebug()<<book;
     /*ui->txtBooks->setText(book);*/
-    //reply->deleteLater();
-    //manager->deleteLater();
-//}
+    reply->deleteLater();
+    manager->deleteLater();
+}
 
 
-
-/*void MainWindow::on_btnShowOneBook_clicked()
+void MainWindow::on_btnShowOneBook_clicked()
 {
     QString site_url="http://localhost:3000/book/1";
     QString credentials="newAdmin:newPass";
@@ -72,10 +71,11 @@ void MainWindow::getOneBookSlot(QNetworkReply *reply)
 {
     QByteArray response_data=reply->readAll();
     QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
-    qDebug()<<json_doc["name"];
-    QString book=json_doc["name"].toString()+" : "+json_doc["author"].toString()+" : "+json_doc["isbn"].toString();
+   // qDebug()<<json_doc["name"];
+   // QString book=json_doc["name"].toString()+" : "+json_doc["author"].toString()+" : "+json_doc["isbn"].toString();
     /*ui->txtBooks->setText(book);*/
-//}
+}
+
 
 void MainWindow::on_btnLogin_clicked()
 {
@@ -90,13 +90,9 @@ void MainWindow::on_btnLogin_clicked()
     QString headerData = "Basic " + data;
     request.setRawHeader( "Authorization", headerData.toLocal8Bit() );
     loginManager = new QNetworkAccessManager(this);
-    connect(loginManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(loginSlot(QNetworkReply*)));
+    connect(loginManager, SIGNAL(finished (QNetworkReply*)),
+    this, SLOT(loginSlot(QNetworkReply*)));
     reply = loginManager->post(request, QJsonDocument(json).toJson());
-    // Tallennetaan käyttäjätunnus lineEditUsername-kentästä muuttujaan
-    //QString userID = ui->lineEditUsername->text();
-    // Tai sama suoraan integeriks
-    korttiID = ui->lineEditUsername->text().toInt();
-    qDebug()<<korttiID;
 }
 void MainWindow::loginSlot(QNetworkReply *reply)
 {
@@ -107,9 +103,8 @@ void MainWindow::loginSlot(QNetworkReply *reply)
         //otetaan vastaan nimellä asiakasID tai tiliID
         qDebug()<<"Oikea tunnus ...avaa form";
         ui->labelLoginDebug->setText("Kirjautumistiedot oikein, avataan pankki.");
-        //QThread::msleep(2000);
         this->close();
-        objValikko= new Valikko;//objValikko=new Valikko(korttiID);asiakas tai tiliID ei kortti
+
         objValikko->show();
     }
     else {
@@ -117,7 +112,7 @@ void MainWindow::loginSlot(QNetworkReply *reply)
         ui->lineEditUsername->setText("");
         qDebug()<<"tunnus ja salasana ei täsmää";
         ui->labelLoginDebug->setText("Kirjautumistiedot väärin!");
-        //QThread::msleep(1500);
+        QThread::msleep(1500);
     }
 }
 

@@ -1,6 +1,13 @@
 #include "valikko.h"
 
+
 #include "ui_valikko.h"
+
+=======
+#include "ui_valikko.h"
+#include "mainwindow.h"
+#include <QDebug>//timer tulostus
+int *tm;
 
 Valikko::Valikko(QWidget *parent) :
 //Valikko::Valikko(int id, QWidget *parent) :
@@ -12,6 +19,7 @@ Valikko::Valikko(QWidget *parent) :
     objPankki=new Pankki;
     timer = new QTimer(this);//Timer
     connect(timer, SIGNAL(timeout()),this,SLOT(myfunction())); //timer
+
     //timer->start(10000); //Timerin aika ms-> tässä 10 sekunttia.
     //*tm = timer;
 
@@ -30,6 +38,10 @@ Valikko::Valikko(QWidget *parent) :
     connect(naytaAsiakasTiedotManager, SIGNAL(finished (QNetworkReply*)),
     this, SLOT(naytaAsiakasTiedotSlot(QNetworkReply*)));
     reply = naytaAsiakasTiedotManager->get(request);
+
+    timer->start(10000); //Timerin aika ms-> tässä 10 sekunttia.
+    //*tm = timer;
+
 }
 
 Valikko::~Valikko()
@@ -57,9 +69,11 @@ void Valikko::on_btnSaldo_clicked()
 
 void Valikko::on_btnSiirto_clicked()
 {
+
     this ->close();
     //timer->start(10000);
     //timer->stop();
+
     objPankki->show();
 }
 

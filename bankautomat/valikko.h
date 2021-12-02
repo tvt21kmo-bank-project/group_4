@@ -21,6 +21,8 @@ public:
     explicit Valikko(QWidget *parent = nullptr);
     //explicit Valikko(int id, QWidget *parent = nullptr);
     ~Valikko();
+public slots:
+   void myfunction();
 
 public slots:
    void myfunction();
@@ -34,16 +36,11 @@ private slots:
 
     void on_btnTapahtumat_clicked();
 
-    void on_btnKirjauduUlos_clicked();
 
-    void on_btnNaytaAsiakasTiedot_clicked();
-    void naytaAsiakasTiedotSlot (QNetworkReply *reply);
 
 private:
     Ui::Valikko *ui;
     Pankki *objPankki;
-    QNetworkAccessManager *naytaAsiakasTiedotManager;
-    QNetworkReply *reply;
     int valinta;
     QTimer *timer;
 };
