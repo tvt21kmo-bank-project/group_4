@@ -70,8 +70,8 @@ void MainWindow::getOneBookSlot(QNetworkReply *reply)
 {
     QByteArray response_data=reply->readAll();
     QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
-    qDebug()<<json_doc["name"];
-    QString book=json_doc["name"].toString()+" : "+json_doc["author"].toString()+" : "+json_doc["isbn"].toString();
+   // qDebug()<<json_doc["name"];
+   // QString book=json_doc["name"].toString()+" : "+json_doc["author"].toString()+" : "+json_doc["isbn"].toString();
     /*ui->txtBooks->setText(book);*/
 }
 
