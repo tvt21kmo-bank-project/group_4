@@ -7,6 +7,7 @@
 #include <QtNetwork>
 #include <QNetworkAccessManager>
 #include <QJsonDocument>
+#include <QTimer>
 
 
 namespace Ui {
@@ -19,7 +20,11 @@ class Valikko : public QDialog
 
 public:
     explicit Valikko(QWidget *parent = nullptr);
+    //explicit Valikko(int id, QWidget *parent = nullptr);
     ~Valikko();
+
+public slots:
+   void myfunction();
 
 private slots:
     void on_btnNosto_clicked();
@@ -42,6 +47,7 @@ private:
     QNetworkAccessManager *naytaAsiakasTiedotManager;
     QNetworkReply *reply;
     int valinta;
+    QTimer *timer;
 };
 
 #endif // VALIKKO_H
