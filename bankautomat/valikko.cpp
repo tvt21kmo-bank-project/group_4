@@ -19,6 +19,7 @@ Valikko::Valikko(QWidget *parent) :
 //qDebug()<<id;
     //QString site_url="http://localhost:3000/asiakas/"+id;
 
+    //testii
     QString site_url="http://localhost:3000/asiakas/1";
     QString credentials="newAdmin:newPass";
     QNetworkRequest request((site_url));
