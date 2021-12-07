@@ -111,4 +111,3 @@ void Valikko::naytaAsiakasTiedotSlot(QNetworkReply *reply)
     //reply->deleteLater();
     //manager->deleteLater();
 }
-
