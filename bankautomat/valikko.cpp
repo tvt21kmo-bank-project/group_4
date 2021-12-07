@@ -10,6 +10,9 @@ Valikko::Valikko(QWidget *parent) :
 {
     ui->setupUi(this);
     objPankki=new Pankki;
+
+    //objNosto=new Nosto;
+
     timer = new QTimer(this);//Timer
     connect(timer, SIGNAL(timeout()),this,SLOT(myfunction())); //timer
     //timer->start(10000); //Timerin aika ms-> tässä 10 sekunttia.
@@ -31,6 +34,7 @@ Valikko::Valikko(QWidget *parent) :
     connect(naytaAsiakasTiedotManager, SIGNAL(finished (QNetworkReply*)),
     this, SLOT(naytaAsiakasTiedotSlot(QNetworkReply*)));
     reply = naytaAsiakasTiedotManager->get(request);
+
 }
 
 Valikko::~Valikko()
@@ -46,7 +50,8 @@ void Valikko::myfunction()
 
 void Valikko::on_btnNosto_clicked()
 {
-
+    this -> close();
+    objNosto->show();
 }
 
 
@@ -98,6 +103,12 @@ void Valikko::naytaAsiakasTiedotSlot(QNetworkReply *reply)
 {
     QByteArray response_data=reply->readAll();
     QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
+
+    //qDebug()<<json_doc;
+    //QString asiakas=json_doc["enimi"].toString()+" : "+json_doc["snimi"].toString()+" : "+json_doc["osoite"].toString()+" : "+json_doc["puhno"].toString();
+   // ui->textEditNaytaAsiakasTiedot->setText(asiakas);
+}
+
     //qDebug()<<json_doc;
     QJsonArray json_array = json_doc.array();
     QString asiakas;
@@ -106,6 +117,7 @@ void Valikko::naytaAsiakasTiedotSlot(QNetworkReply *reply)
     asiakas+=QString(json_obj["enimi"].toString())+" "+json_obj["snimi"].toString()+"\r"+json_obj["osoite"].toString()+"\r"+json_obj["puhnro"].toString();
     }
     ui->textEditNaytaAsiakasTiedot->setText(asiakas);
+
 
     /*ui->txtBooks->setText(book);*/
     //reply->deleteLater();

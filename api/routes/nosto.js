@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const siirto = require('../models/nosto');
+const nosto = require('../models/nosto_model');
 
-router.post('/action_nosto', function(request, response){
-    siirto.debit(request.body, function(err, dbResult){
+router.post('/debit_nosto', function(request, response){
+    nosto.debit(request.body, function(err, dbResult){
         if(err){
             response.json(err);
         }
@@ -11,6 +11,20 @@ router.post('/action_nosto', function(request, response){
             response.json(dbResult.affectedRows);
         }
     })
+
+}
+);
+
+router.post('/credit_nosto', function(request, response){
+    nosto.credit(request.body, function(err, dbResult){
+        if(err){
+            response.json(err);
+        }
+        else{
+            response.json(dbResult.affectedRows);
+        }
+    })
+
 }
 );
 
