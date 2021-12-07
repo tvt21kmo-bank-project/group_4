@@ -39,7 +39,7 @@ Valikko::~Valikko()
 
 void Valikko::myfunction()
 {
-    objPankki->close();
+    //objPankki->close();
     qDebug() << "Timer update...";
 }
 

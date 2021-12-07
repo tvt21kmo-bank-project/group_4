@@ -23,7 +23,6 @@ public:
     //Muuttuja käyttäjän id:n tallentamiseen
     int korttiID;
 
-
 private slots:
     //void on_btnShowBooks_clicked();
     //void getBookSlot (QNetworkReply *reply);

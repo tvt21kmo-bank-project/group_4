@@ -47,34 +47,34 @@ MainWindow::~MainWindow()
     book+=QString::number(json_obj["id_book"].toInt())+","+json_obj["name"].toString()+","+json_obj["author"].toString()+"\r";
     }
     qDebug()<<book;
-    /*ui->txtBooks->setText(book);*/
+    ui->txtBooks->setText(book);
     //reply->deleteLater();
     //manager->deleteLater();
-//}
+//}*/
 
 
 
 /*void MainWindow::on_btnShowOneBook_clicked()
 {
-    QString site_url="http://localhost:3000/book/1";
+    QString site_url="http://localhost:3000/tili/1";
     QString credentials="newAdmin:newPass";
     QNetworkRequest request((site_url));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QByteArray data = credentials.toLocal8Bit().toBase64();
     QString headerData = "Basic " + data;
     request.setRawHeader( "Authorization", headerData.toLocal8Bit() );
-    oneBookManager = new QNetworkAccessManager(this);
+    saldoManager = new QNetworkAccessManager(this);
     connect(oneBookManager, SIGNAL(finished (QNetworkReply*)),
-    this, SLOT(getOneBookSlot(QNetworkReply*)));
-    reply = oneBookManager->get(request);
+    this, SLOT(getSaldoSlot(QNetworkReply*)));
+    reply = saldoManager->get(request);
 }
 void MainWindow::getOneBookSlot(QNetworkReply *reply)
 {
     QByteArray response_data=reply->readAll();
     QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
-    qDebug()<<json_doc["name"];
-    QString book=json_doc["name"].toString()+" : "+json_doc["author"].toString()+" : "+json_doc["isbn"].toString();
-    /*ui->txtBooks->setText(book);*/
+    qDebug()<<json_doc["saldo"];
+    QString tili=json_doc["saldo"].toString();
+    ui->txtTili->setText(tili);*/
 //}
 
 void MainWindow::on_btnLogin_clicked()
@@ -92,6 +92,7 @@ void MainWindow::on_btnLogin_clicked()
     loginManager = new QNetworkAccessManager(this);
     connect(loginManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(loginSlot(QNetworkReply*)));
     reply = loginManager->post(request, QJsonDocument(json).toJson());
+
     // Tallennetaan käyttäjätunnus lineEditUsername-kentästä muuttujaan
     //QString userID = ui->lineEditUsername->text();
     // Tai sama suoraan integeriks
