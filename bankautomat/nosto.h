@@ -2,6 +2,10 @@
 #define NOSTO_H
 
 #include <QDialog>
+#include <QtNetwork>
+#include <QNetworkAccessManager>
+#include <QJsonDocument>
+
 
 namespace Ui {
 class Nosto;
@@ -30,8 +34,12 @@ private slots:
 
     void on_btnHyvaksy_clicked();
 
+    void on_btnTakaisin_clicked();
+
 private:
     Ui::Nosto *ui;
+
+
 };
 
 #endif // NOSTO_H

@@ -6,6 +6,8 @@ Nosto::Nosto(QWidget *parent) :
     ui(new Ui::Nosto)
 {
     ui->setupUi(this);
+
+
 }
 
 Nosto::~Nosto()
@@ -46,4 +48,10 @@ void Nosto::on_btn500_clicked()
 void Nosto::on_btnHyvaksy_clicked()
 {
 
+}
+
+void Nosto::on_btnTakaisin_clicked()
+{
+    this -> close();
+    //objValikko -> show();
 }

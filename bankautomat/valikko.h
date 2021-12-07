@@ -1,6 +1,7 @@
 #ifndef VALIKKO_H
 #define VALIKKO_H
 
+#include "nosto.h"
 #include "pankki.h"
 #include <QDialog>
 #include <QtNetwork>
@@ -37,6 +38,7 @@ private slots:
 private:
     Ui::Valikko *ui;
     Pankki *objPankki;
+    Nosto *objNosto;
     QNetworkAccessManager *naytaAsiakasTiedotManager;
     QNetworkReply *reply;
     int valinta;

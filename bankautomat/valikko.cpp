@@ -8,6 +8,7 @@ Valikko::Valikko(QWidget *parent) :
 {
     ui->setupUi(this);
     objPankki=new Pankki;
+    objNosto=new Nosto;
 }
 
 Valikko::~Valikko()
@@ -17,7 +18,8 @@ Valikko::~Valikko()
 
 void Valikko::on_btnNosto_clicked()
 {
-
+    this -> close();
+    objNosto->show();
 }
 
 
@@ -67,7 +69,7 @@ void Valikko::naytaAsiakasTiedotSlot(QNetworkReply *reply)
     QByteArray response_data=reply->readAll();
     QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
     qDebug()<<json_doc;
-    QString asiakas=json_doc["enimi"].toString()+" : "+json_doc["snimi"].toString()+" : "+json_doc["osoite"].toString()+" : "+json_doc["puhno"].toString();
-    ui->textEditNaytaAsiakasTiedot->setText(asiakas);
+    //QString asiakas=json_doc["enimi"].toString()+" : "+json_doc["snimi"].toString()+" : "+json_doc["osoite"].toString()+" : "+json_doc["puhno"].toString();
+   // ui->textEditNaytaAsiakasTiedot->setText(asiakas);
 }
 
