@@ -6,9 +6,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //objValikko=new Valikko("1");
+    objValikko=new Valikko;
     //objPankki=new Pankki;
-
 }
 
 MainWindow::~MainWindow()
@@ -99,12 +98,10 @@ void MainWindow::loginSlot(QNetworkReply *reply)
     QByteArray response_data=reply->readAll();
     qDebug()<<response_data;
     if(response_data=="true"){
-        //määritä request korttiID pohjalta hae asiakas ID
-        //otetaan vastaan nimellä asiakasID tai tiliID
         qDebug()<<"Oikea tunnus ...avaa form";
         ui->labelLoginDebug->setText("Kirjautumistiedot oikein, avataan pankki.");
         this->close();
-
+        QThread::msleep(2000);
         objValikko->show();
     }
     else {

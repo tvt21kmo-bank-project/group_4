@@ -21,7 +21,6 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-
 private slots:
     void on_btnShowBooks_clicked();
     void getBookSlot (QNetworkReply *reply);
