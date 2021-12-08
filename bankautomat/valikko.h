@@ -27,9 +27,11 @@ public slots:
    void myfunction();
 
 private slots:
+
     void on_btnNosto_clicked();
 
     void on_btnSaldo_clicked();
+    void naytaSaldoSlot(QNetworkReply *reply);
 
     void on_btnSiirto_clicked();
 
@@ -40,11 +42,14 @@ private slots:
     void on_btnNaytaAsiakasTiedot_clicked();
     void naytaAsiakasTiedotSlot (QNetworkReply *reply);
 
+
+
 private:
     Ui::Valikko *ui;
     Pankki *objPankki;
     Nosto *objNosto;
     QNetworkAccessManager *naytaAsiakasTiedotManager;
+    QNetworkAccessManager *naytaSaldoManager;
     QNetworkReply *reply;
     int valinta;
     QTimer *timer;

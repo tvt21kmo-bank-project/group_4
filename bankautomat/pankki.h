@@ -25,6 +25,8 @@ private slots:
     void creditSlot(QNetworkReply *reply);
     void debitSlot(QNetworkReply *reply);
 
+    void on_btnLogoutPankki_clicked();
+
 private:
     Ui::Pankki *ui;
     QNetworkAccessManager *creditManager;
