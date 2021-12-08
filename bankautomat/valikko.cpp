@@ -2,6 +2,7 @@
 
 #include "ui_valikko.h"
 
+
 Valikko::Valikko(QWidget *parent) :
 //Valikko::Valikko(int id, QWidget *parent) :
 
@@ -57,9 +58,14 @@ void Valikko::on_btnNosto_clicked()
 void Valikko::on_btnSaldo_clicked()  // ei tee yhtään mitään on testailuvaiheessa
 {
     //json.insert("id1",ui->leDebitMaksaja->text());
-    QString site_url="http://localhost:3000/saldo/id1";
+    QJsonObject json;
+
+
+    QString site_url="http://localhost:3000/tili/1";
+
     QString credentials="newAdmin:newPass";
     QNetworkRequest request((site_url));
+
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QByteArray data = credentials.toLocal8Bit().toBase64();
     QString headerData = "Basic " + data;
@@ -68,19 +74,21 @@ void Valikko::on_btnSaldo_clicked()  // ei tee yhtään mitään on testailuvaih
     connect(naytaSaldoManager, SIGNAL(finished(QNetworkReply*)),
     this, SLOT(naytaSaldoSlot(QNetworkReply*)));
     reply = naytaSaldoManager->get(request);
+
 }
 void Valikko::naytaSaldoSlot(QNetworkReply *reply)  // ei tee yhtään mitään on testailuvaiheessa
 {
-    //qDebug()<<json_doc;
     QByteArray response_data=reply->readAll();
     QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
     QJsonArray json_array = json_doc.array();
-    QString tili;
+    QString saldo;
     foreach (const QJsonValue &value, json_array) {
     QJsonObject json_obj = value.toObject();
-    tili+=QString(json_obj["saldo"].toString())+" : "+json_obj["idKortti"].toString();
+    //QString::number();
+    saldo+=QString("Tilisi saldo on")+" "+QString::number(json_obj["saldo"].toInt());
     }
 
+    ui->textEditNaytaAsiakasTiedot->setText(saldo);
 }
 
 
@@ -97,9 +105,32 @@ void Valikko::on_btnSiirto_clicked()
 
 void Valikko::on_btnTapahtumat_clicked()
 {
-    valinta=4;
+    QString site_url="http://localhost:3000/tilitapahtumat/1";
+    QString credentials="newAdmin:newPass";
+    QNetworkRequest request((site_url));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    QByteArray data = credentials.toLocal8Bit().toBase64();
+    QString headerData = "Basic " + data;
+    request.setRawHeader( "Authorization", headerData.toLocal8Bit() );
+    naytaTilitapahtumatManager = new QNetworkAccessManager(this);
+    connect(naytaTilitapahtumatManager, SIGNAL(finished(QNetworkReply*)),
+    this, SLOT(naytaTilitapahtumatSlot(QNetworkReply*)));
+    reply = naytaTilitapahtumatManager->get(request);
 }
+void Valikko::naytaTilitapahtumatSlot (QNetworkReply *reply)
+{
+    QByteArray response_data=reply->readAll();
+    QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
+    QJsonArray json_array = json_doc.array();
+    QString tilitapahtumat;
+    foreach (const QJsonValue &value, json_array) {
+    QJsonObject json_obj = value.toObject();
+    //QString::number();
+    tilitapahtumat+=QString("Tapahtuma")+" "+json_obj["tapahtuma"].toString()+" Määrä "+QString::number(json_obj["summa"].toInt())+" Aika "+json_obj["pvm"].toString()+"\r";
+    }
 
+    ui->textEditNaytaAsiakasTiedot->setText(tilitapahtumat);
+}
 
 void Valikko::on_btnKirjauduUlos_clicked()
 {
@@ -111,7 +142,7 @@ void Valikko::on_btnKirjauduUlos_clicked()
 
 void Valikko::on_btnNaytaAsiakasTiedot_clicked()
 {
-    /*QString site_url="http://localhost:3000/asiakas/1";
+    QString site_url="http://localhost:3000/asiakas/1";
     QString credentials="newAdmin:newPass";
     QNetworkRequest request((site_url));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
@@ -119,9 +150,9 @@ void Valikko::on_btnNaytaAsiakasTiedot_clicked()
     QString headerData = "Basic " + data;
     request.setRawHeader( "Authorization", headerData.toLocal8Bit() );
     naytaAsiakasTiedotManager = new QNetworkAccessManager(this);
-    connect(naytaAsiakasTiedotManager, SIGNAL(finished (QNetworkReply*)),
+    connect(naytaAsiakasTiedotManager, SIGNAL(finished(QNetworkReply*)),
     this, SLOT(naytaAsiakasTiedotSlot(QNetworkReply*)));
-    reply = naytaAsiakasTiedotManager->get(request);*/
+    reply = naytaAsiakasTiedotManager->get(request);
 }
 
 void Valikko::naytaAsiakasTiedotSlot(QNetworkReply *reply)
