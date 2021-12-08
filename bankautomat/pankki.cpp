@@ -60,3 +60,9 @@ void Pankki::creditSlot(QNetworkReply *reply)
 }
 
 
+
+void Pankki::on_btnLogoutPankki_clicked()
+{
+    this->close();
+}
+

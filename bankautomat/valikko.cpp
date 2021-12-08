@@ -10,8 +10,7 @@ Valikko::Valikko(QWidget *parent) :
 {
     ui->setupUi(this);
     objPankki=new Pankki;
-
-    //objNosto=new Nosto;
+    objNosto=new Nosto;
 
     timer = new QTimer(this);//Timer
     connect(timer, SIGNAL(timeout()),this,SLOT(myfunction())); //timer
@@ -22,7 +21,6 @@ Valikko::Valikko(QWidget *parent) :
 //qDebug()<<id;
     //QString site_url="http://localhost:3000/asiakas/"+id;
 
-    //testii
     QString site_url="http://localhost:3000/asiakas/1";
     QString credentials="newAdmin:newPass";
     QNetworkRequest request((site_url));
@@ -55,10 +53,37 @@ void Valikko::on_btnNosto_clicked()
 }
 
 
-void Valikko::on_btnSaldo_clicked()
+
+void Valikko::on_btnSaldo_clicked()  // ei tee yhtään mitään on testailuvaiheessa
 {
-    valinta=2;
+    //json.insert("id1",ui->leDebitMaksaja->text());
+    QString site_url="http://localhost:3000/saldo/id1";
+    QString credentials="newAdmin:newPass";
+    QNetworkRequest request((site_url));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    QByteArray data = credentials.toLocal8Bit().toBase64();
+    QString headerData = "Basic " + data;
+    request.setRawHeader( "Authorization", headerData.toLocal8Bit() );
+    naytaSaldoManager = new QNetworkAccessManager(this);
+    connect(naytaSaldoManager, SIGNAL(finished(QNetworkReply*)),
+    this, SLOT(naytaSaldoSlot(QNetworkReply*)));
+    reply = naytaSaldoManager->get(request);
 }
+void Valikko::naytaSaldoSlot(QNetworkReply *reply)  // ei tee yhtään mitään on testailuvaiheessa
+{
+    //qDebug()<<json_doc;
+    QByteArray response_data=reply->readAll();
+    QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
+    QJsonArray json_array = json_doc.array();
+    QString tili;
+    foreach (const QJsonValue &value, json_array) {
+    QJsonObject json_obj = value.toObject();
+    tili+=QString(json_obj["saldo"].toString())+" : "+json_obj["idKortti"].toString();
+    }
+
+}
+
+
 
 
 void Valikko::on_btnSiirto_clicked()
@@ -101,15 +126,16 @@ void Valikko::on_btnNaytaAsiakasTiedot_clicked()
 
 void Valikko::naytaAsiakasTiedotSlot(QNetworkReply *reply)
 {
-    QByteArray response_data=reply->readAll();
-    QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
+
 
     //qDebug()<<json_doc;
     //QString asiakas=json_doc["enimi"].toString()+" : "+json_doc["snimi"].toString()+" : "+json_doc["osoite"].toString()+" : "+json_doc["puhno"].toString();
-   // ui->textEditNaytaAsiakasTiedot->setText(asiakas);
-}
+    //ui->textEditNaytaAsiakasTiedot->setText(asiakas);
+//}
 
     //qDebug()<<json_doc;
+    QByteArray response_data=reply->readAll();
+    QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
     QJsonArray json_array = json_doc.array();
     QString asiakas;
     foreach (const QJsonValue &value, json_array) {
@@ -118,8 +144,4 @@ void Valikko::naytaAsiakasTiedotSlot(QNetworkReply *reply)
     }
     ui->textEditNaytaAsiakasTiedot->setText(asiakas);
 
-
-    /*ui->txtBooks->setText(book);*/
-    //reply->deleteLater();
-    //manager->deleteLater();
 }

@@ -13,19 +13,6 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QPushButton" name="btnNosto">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>80</y>
-     <width>111</width>
-     <height>61</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Nosto</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="btnSaldo">
    <property name="geometry">
     <rect>
@@ -149,6 +136,29 @@
    </property>
    <property name="text">
     <string>Näytä omat tietoni</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnNosto">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>80</y>
+     <width>111</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Nosto</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEditSaldo">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>180</y>
+     <width>81</width>
+     <height>41</height>
+    </rect>
    </property>
   </widget>
  </widget>
