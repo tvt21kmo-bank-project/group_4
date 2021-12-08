@@ -41,6 +41,7 @@ private slots:
 
     void on_btnNaytaAsiakasTiedot_clicked();
     void naytaAsiakasTiedotSlot (QNetworkReply *reply);
+    void naytaTilitapahtumatSlot (QNetworkReply *reply);
 
 
 
@@ -49,6 +50,7 @@ private:
     Pankki *objPankki;
     Nosto *objNosto;
     QNetworkAccessManager *naytaAsiakasTiedotManager;
+    QNetworkAccessManager *naytaTilitapahtumatManager;
     QNetworkAccessManager *naytaSaldoManager;
     QNetworkReply *reply;
     int valinta;
