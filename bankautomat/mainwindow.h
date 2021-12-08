@@ -23,6 +23,7 @@ public:
     ~MainWindow();
     //Muuttuja käyttäjän id:n tallentamiseen
     int korttiID;
+    int yritykset = 0;
 
 private slots:
     //void on_btnShowBooks_clicked();

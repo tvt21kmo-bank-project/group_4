@@ -101,27 +101,39 @@ void MainWindow::on_btnLogin_clicked()
     korttiID = ui->lineEditUsername->text().toInt();
     qDebug()<<korttiID;
 }
+
 void MainWindow::loginSlot(QNetworkReply *reply)
 {
+
     QByteArray response_data=reply->readAll();
     qDebug()<<response_data;
-    if(response_data=="true"){
-        //määritä request korttiID pohjalta hae asiakas ID
-        //otetaan vastaan nimellä asiakasID tai tiliID
+
+
+        if (response_data=="true"){
         qDebug()<<"Oikea tunnus ...avaa form";
         ui->labelLoginDebug->setText("Kirjautumistiedot oikein, avataan pankki.");
         //QThread::msleep(2000);
         this->close();
-        objValikko= new Valikko;//objValikko=new Valikko(korttiID);asiakas tai tiliID ei kortti
+        objValikko=new Valikko;
         objValikko->show();
-    }
-    else {
-        ui->lineEditPassword->setText("");
-        ui->lineEditUsername->setText("");
-        qDebug()<<"tunnus ja salasana ei täsmää";
-        ui->labelLoginDebug->setText("Kirjautumistiedot väärin!");
-        //QThread::msleep(1500);
-    }
+
+        }
+        if (response_data=="false" && yritykset < 2){
+            qDebug()<<"Väärä tunnus";
+            ui->labelLoginDebug->setText("Väärä tunnus ...yritä uudelleen");
+            //QThread::msleep(2000);
+           yritykset++;
 }
 
 
+        else{
+            ui->lineEditPassword->setText("");
+            ui->lineEditUsername->setText("");
+            qDebug()<<"tunnus 3x väärin, suljetaan";
+            ui->labelLoginDebug->setText("Syötit tunnuksen liian monesti väärin, suljetaan!");
+            QThread::msleep(2000);
+                this->close();
+
+}
+
+}
