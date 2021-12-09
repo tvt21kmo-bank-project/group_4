@@ -3,6 +3,7 @@
 
 #include "nosto.h"
 #include "pankki.h"
+#include "mainwindow.h"
 #include <QDialog>
 #include <QtNetwork>
 #include <QNetworkAccessManager>
@@ -19,8 +20,12 @@ class Valikko : public QDialog
     Q_OBJECT
 
 public:
-    explicit Valikko(QWidget *parent = nullptr);
-    //explicit Valikko(int id, QWidget *parent = nullptr);
+
+    explicit Valikko(QString id, QWidget *parent = nullptr);
+    //explicit Valikko(int idtili, QWidget *parent = nullptr);
+
+    void setId(const QString &value);
+
     ~Valikko();
 
 public slots:
@@ -45,15 +50,19 @@ private slots:
 
 
 
+    void on_btnBack_clicked();
+
 private:
     Ui::Valikko *ui;
     Pankki *objPankki;
     Nosto *objNosto;
+    MainWindow *objMainWindow;
     QNetworkAccessManager *naytaAsiakasTiedotManager;
     QNetworkAccessManager *naytaTilitapahtumatManager;
     QNetworkAccessManager *naytaSaldoManager;
     QNetworkReply *reply;
     int valinta;
+    QString idtili;
     QTimer *timer;
 };
 
