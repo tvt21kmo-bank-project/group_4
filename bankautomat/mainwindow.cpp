@@ -73,7 +73,7 @@ void MainWindow::getOneBookSlot(QNetworkReply *reply)
     QByteArray response_data=reply->readAll();
     QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
 
-    /* qDebug()<<json_doc["saldo"];
+     qDebug()<<json_doc["saldo"];
     QString tili=json_doc["saldo"].toString();
     ui->txtTili->setText(tili);*/
 //}

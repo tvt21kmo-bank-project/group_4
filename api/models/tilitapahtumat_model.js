@@ -3,10 +3,10 @@ const db = require('../database');
 //ja sen sisään tarvittavat funktiot
 const tilitapahtumat = {
     get: function(callback) {
-        return db.query('select * from tilitapahtumat', callback);
+        return db.query('select summa, tapahtuma, date_format(pvm,"%d.%m.%Y : %H.%i.%s") as pvm from tilitapahtumat', callback);
     },
     getById: function(id, callback) {
-        return db.query('select * from tilitapahtumat where idTili=?', [id], callback);
+        return db.query('select summa, tapahtuma, date_format(pvm,"%d.%m.%Y : %H.%i.%s") as pvm from tilitapahtumat where idTili=?', [id], callback);
     }
 };
 //exportilla viedään ulos siirto objekti
