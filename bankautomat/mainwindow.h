@@ -26,12 +26,10 @@ public:
     int yritykset = 0;
 
 private slots:
-    //void on_btnShowBooks_clicked();
-    //void getBookSlot (QNetworkReply *reply);
-    //void getOneBookSlot (QNetworkReply *reply);
+
     void loginSlot (QNetworkReply *reply);
 
-    //void on_btnShowOneBook_clicked();
+
 
     void on_btnLogin_clicked();
 
@@ -39,7 +37,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QNetworkAccessManager *manager;
-    //QNetworkAccessManager *oneBookManager;
+
     QNetworkAccessManager *loginManager;
     QNetworkReply *reply;
     Valikko *objValikko;
