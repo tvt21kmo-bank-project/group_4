@@ -27,7 +27,7 @@ void Pankki::on_btnDebit_clicked()
     QString headerData = "Basic " + data;
     request.setRawHeader( "Authorization", headerData.toLocal8Bit() );
     debitManager = new QNetworkAccessManager(this);
-    connect(debitManager, SIGNAL(finished (QNetworkReply*)),
+    connect(debitManager, SIGNAL(finished(QNetworkReply*)),
     this, SLOT(debitSlot(QNetworkReply*)));
     reply = debitManager->post(request, QJsonDocument(json).toJson());
 }

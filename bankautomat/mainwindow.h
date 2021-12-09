@@ -43,6 +43,8 @@ private:
     QNetworkAccessManager *loginManager;
     QNetworkReply *reply;
     Valikko *objValikko;
+    QString idtili;
+    int id;
 
 };
 #endif // MAINWINDOW_H

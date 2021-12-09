@@ -3,15 +3,17 @@
 #include "ui_valikko.h"
 
 
-Valikko::Valikko(QWidget *parent) :
-//Valikko::Valikko(int id, QWidget *parent) :
+Valikko::Valikko(QString id,  QWidget *parent) :
+//Valikko::Valikko(int idtili, QWidget *parent) :
 
     QDialog(parent),
     ui(new Ui::Valikko)
 {
     ui->setupUi(this);
+    idtili=id;
     objPankki=new Pankki;
     objNosto=new Nosto;
+    //objMainWindow=new MainWindow;
 
     timer = new QTimer(this);//Timer
     connect(timer, SIGNAL(timeout()),this,SLOT(myfunction())); //timer
@@ -22,7 +24,7 @@ Valikko::Valikko(QWidget *parent) :
 //qDebug()<<id;
     //QString site_url="http://localhost:3000/asiakas/"+id;
 
-    QString site_url="http://localhost:3000/asiakas/1";
+    QString site_url="http://localhost:3000/asiakas/"+id;
     QString credentials="newAdmin:newPass";
     QNetworkRequest request((site_url));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
@@ -30,10 +32,14 @@ Valikko::Valikko(QWidget *parent) :
     QString headerData = "Basic " + data;
     request.setRawHeader( "Authorization", headerData.toLocal8Bit() );
     naytaAsiakasTiedotManager = new QNetworkAccessManager(this);
-    connect(naytaAsiakasTiedotManager, SIGNAL(finished (QNetworkReply*)),
+    connect(naytaAsiakasTiedotManager, SIGNAL(finished(QNetworkReply*)),
     this, SLOT(naytaAsiakasTiedotSlot(QNetworkReply*)));
     reply = naytaAsiakasTiedotManager->get(request);
 
+}
+void Valikko::setId(const QString &value)
+{
+    idtili = value;
 }
 
 Valikko::~Valikko()
@@ -55,14 +61,14 @@ void Valikko::on_btnNosto_clicked()
 
 
 
-void Valikko::on_btnSaldo_clicked()  // ei tee yhtään mitään on testailuvaiheessa
+void Valikko::on_btnSaldo_clicked()
 {
     //json.insert("id1",ui->leDebitMaksaja->text());
     QJsonObject json;
 
 
-    QString site_url="http://localhost:3000/tili/1";
-
+    QString site_url="http://localhost:3000/tili/"+idtili;
+    //qDebug()<<"saldo="+idtili;
     QString credentials="newAdmin:newPass";
     QNetworkRequest request((site_url));
 
@@ -76,7 +82,7 @@ void Valikko::on_btnSaldo_clicked()  // ei tee yhtään mitään on testailuvaih
     reply = naytaSaldoManager->get(request);
 
 }
-void Valikko::naytaSaldoSlot(QNetworkReply *reply)  // ei tee yhtään mitään on testailuvaiheessa
+void Valikko::naytaSaldoSlot(QNetworkReply *reply)
 {
     QByteArray response_data=reply->readAll();
     QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
@@ -105,7 +111,7 @@ void Valikko::on_btnSiirto_clicked()
 
 void Valikko::on_btnTapahtumat_clicked()
 {
-    QString site_url="http://localhost:3000/tilitapahtumat/1";
+    QString site_url="http://localhost:3000/tilitapahtumat/"+idtili;
     QString credentials="newAdmin:newPass";
     QNetworkRequest request((site_url));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
@@ -142,7 +148,7 @@ void Valikko::on_btnKirjauduUlos_clicked()
 
 void Valikko::on_btnNaytaAsiakasTiedot_clicked()
 {
-    QString site_url="http://localhost:3000/asiakas/1";
+    QString site_url="http://localhost:3000/asiakas/"+idtili;
     QString credentials="newAdmin:newPass";
     QNetworkRequest request((site_url));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
@@ -176,3 +182,12 @@ void Valikko::naytaAsiakasTiedotSlot(QNetworkReply *reply)
     ui->textEditNaytaAsiakasTiedot->setText(asiakas);
 
 }
+
+void Valikko::on_btnBack_clicked()
+{
+
+    MainWindow *objMainWindow=new MainWindow();
+    this->close();
+    objMainWindow->show();
+}
+
