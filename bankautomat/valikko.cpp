@@ -182,12 +182,3 @@ void Valikko::naytaAsiakasTiedotSlot(QNetworkReply *reply)
     ui->textEditNaytaAsiakasTiedot->setText(asiakas);
 
 }
-
-void Valikko::on_btnBack_clicked()
-{
-
-    MainWindow *objMainWindow=new MainWindow();
-    this->close();
-    objMainWindow->show();
-}
-

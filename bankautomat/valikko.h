@@ -3,7 +3,7 @@
 
 #include "nosto.h"
 #include "pankki.h"
-#include "mainwindow.h"
+
 #include <QDialog>
 #include <QtNetwork>
 #include <QNetworkAccessManager>
@@ -49,14 +49,10 @@ private slots:
     void naytaTilitapahtumatSlot (QNetworkReply *reply);
 
 
-
-    void on_btnBack_clicked();
-
 private:
     Ui::Valikko *ui;
     Pankki *objPankki;
     Nosto *objNosto;
-    MainWindow *objMainWindow;
     QNetworkAccessManager *naytaAsiakasTiedotManager;
     QNetworkAccessManager *naytaTilitapahtumatManager;
     QNetworkAccessManager *naytaSaldoManager;
