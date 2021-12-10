@@ -1,10 +1,13 @@
 #ifndef NOSTO_H
 #define NOSTO_H
 
+//#include "valikko.h"
+
 #include <QDialog>
 #include <QtNetwork>
 #include <QNetworkAccessManager>
 #include <QJsonDocument>
+
 
 namespace Ui {
 class Nosto;
@@ -17,6 +20,7 @@ class Nosto : public QDialog
 public:
     explicit Nosto(QWidget *parent = nullptr);
     ~Nosto();
+
 
 private slots:
     void on_btn20_clicked();
@@ -37,6 +41,7 @@ private slots:
 
 private:
     Ui::Nosto *ui;
+
 
 
 };

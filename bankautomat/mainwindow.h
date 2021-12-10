@@ -1,8 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "pankki.h"
-#include "nosto.h"
+//#include "pankki.h"
+//#include "nosto.h"
 #include "valikko.h"
 
 #include <QMainWindow>
@@ -24,6 +24,7 @@ public:
     //Muuttuja käyttäjän id:n tallentamiseen
     int korttiID;
     int yritykset = 0;
+    Valikko *objValikko;
 
 private slots:
     //void on_btnShowBooks_clicked();
@@ -42,7 +43,7 @@ private:
     //QNetworkAccessManager *oneBookManager;
     QNetworkAccessManager *loginManager;
     QNetworkReply *reply;
-    Valikko *objValikko;
+    //Valikko *objValikko;
 
 };
 #endif // MAINWINDOW_H

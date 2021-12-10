@@ -1,5 +1,4 @@
 #include "valikko.h"
-
 #include "ui_valikko.h"
 
 
@@ -12,6 +11,7 @@ Valikko::Valikko(QWidget *parent) :
     ui->setupUi(this);
     objPankki=new Pankki;
     objNosto=new Nosto;
+    //objValikko=new Valikko;
 
     timer = new QTimer(this);//Timer
     connect(timer, SIGNAL(timeout()),this,SLOT(myfunction())); //timer
@@ -39,6 +39,9 @@ Valikko::Valikko(QWidget *parent) :
 Valikko::~Valikko()
 {
     delete ui;
+    ui = nullptr;
+
+
 }
 
 void Valikko::myfunction()
@@ -49,7 +52,7 @@ void Valikko::myfunction()
 
 void Valikko::on_btnNosto_clicked()
 {
-    this -> close();
+    //this -> close();
     objNosto->show();
 }
 
@@ -96,7 +99,7 @@ void Valikko::naytaSaldoSlot(QNetworkReply *reply)  // ei tee yhtään mitään 
 
 void Valikko::on_btnSiirto_clicked()
 {
-    this ->close();
+    //this ->close();
     //timer->start(10000);
     //timer->stop();
     objPankki->show();
@@ -134,6 +137,7 @@ void Valikko::naytaTilitapahtumatSlot (QNetworkReply *reply)
 
 void Valikko::on_btnKirjauduUlos_clicked()
 {
+
     this->close();
 
 

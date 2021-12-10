@@ -1,8 +1,9 @@
 #ifndef VALIKKO_H
 #define VALIKKO_H
 
-#include "nosto.h"
+
 #include "pankki.h"
+#include "nosto.h"
 #include <QDialog>
 #include <QtNetwork>
 #include <QNetworkAccessManager>
@@ -22,6 +23,7 @@ public:
     explicit Valikko(QWidget *parent = nullptr);
     //explicit Valikko(int id, QWidget *parent = nullptr);
     ~Valikko();
+
 
 public slots:
    void myfunction();
