@@ -13,10 +13,16 @@ Pankki::~Pankki()
     delete ui;
 }
 
+void Pankki::setId(const QString &value)
+{
+    idtili = value;
+    ui->laOmatilinro->setText(idtili);
+
+}
 void Pankki::on_btnDebit_clicked()
 {
     QJsonObject json; //luodaan JSON objekti ja lisätään data
-    json.insert("id1",ui->leDebitMaksaja->text());
+    json.insert("id1",ui->laOmatilinro->text());
     json.insert("id2",ui->leDebitSaaja->text());
     json.insert("summa",ui->leDebitSumma->text());
     QString site_url="http://localhost:3000/siirto/debit_transfer";
@@ -38,13 +44,11 @@ void Pankki::debitSlot(QNetworkReply *reply)
     qDebug()<<response_data;
     if(response_data == "1"){
         ui->labelDebitInfo->setText("Siirto onnistui");
-        ui->leDebitMaksaja->setText("");
         ui->leDebitSaaja->setText("");
         ui->leDebitSumma->setText("");
     }
     else {
         ui->labelDebitInfo->setText("Siirto epäonnistui");
-        ui->leDebitMaksaja->setText("");
         ui->leDebitSaaja->setText("");
         ui->leDebitSumma->setText("");
     }
