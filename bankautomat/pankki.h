@@ -16,6 +16,7 @@ class Pankki : public QDialog
 
 public:
     explicit Pankki(QWidget *parent = nullptr);
+    void setId(const QString &value);
     ~Pankki();
 
 private slots:
@@ -32,7 +33,7 @@ private:
     QNetworkAccessManager *creditManager;
     QNetworkAccessManager *debitManager;
     QNetworkReply *reply;
-
+    QString idtili;
 };
 
 #endif // PANKKI_H

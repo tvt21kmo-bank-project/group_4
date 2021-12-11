@@ -105,6 +105,7 @@ void Valikko::on_btnSiirto_clicked()
     //this ->close();
     //timer->start(10000);
     //timer->stop();
+    objPankki->setId(idtili);
     objPankki->show();
 }
 
