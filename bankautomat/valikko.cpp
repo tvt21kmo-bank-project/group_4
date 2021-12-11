@@ -55,7 +55,7 @@ void Valikko::myfunction()
 
 void Valikko::on_btnNosto_clicked()
 {
-    this -> close();
+    //this -> close();
     objNosto->show();
 }
 
@@ -102,7 +102,7 @@ void Valikko::naytaSaldoSlot(QNetworkReply *reply)
 
 void Valikko::on_btnSiirto_clicked()
 {
-    this ->close();
+    //this ->close();
     //timer->start(10000);
     //timer->stop();
     objPankki->show();

@@ -1,8 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "pankki.h"
-#include "nosto.h"
+//#include "pankki.h"
+//#include "nosto.h"
 #include "valikko.h"
 
 #include <QMainWindow>

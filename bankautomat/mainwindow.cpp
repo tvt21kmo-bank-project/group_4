@@ -61,16 +61,19 @@ void MainWindow::loginSlot(QNetworkReply *reply)
         if (response_data!="false"){
             qDebug()<<"Oikea tunnus ...avaa form";
             ui->labelLoginDebug->setText("Kirjautumistiedot oikein, avataan pankki.");
-            //QThread::msleep(2000);
-            this->close();
+            QThread::msleep(2000);
+            //this->close();
             Valikko *objValikko=new Valikko(response_data);
             //objValikko->setId(response_data);
             qDebug() << response_data;
             //ui->labelLoginDebug->setText("");
             objValikko->show();
+            ui -> lineEditUsername->setText("");
+            ui -> lineEditPassword->setText("");
+            ui->labelLoginDebug->setText("");
 
         }
-        if (response_data!="true" && yritykset < 2){
+        else if (response_data!="true" && yritykset < 2){
             //qDebug()<<"Väärä tunnus";
             ui->labelLoginDebug->setText("Väärä tunnus ...yritä uudelleen");
             //QThread::msleep(2000);
