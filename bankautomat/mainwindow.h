@@ -37,7 +37,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QNetworkAccessManager *manager;
-
     QNetworkAccessManager *loginManager;
     QNetworkReply *reply;
     Valikko *objValikko;

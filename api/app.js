@@ -14,6 +14,7 @@ var loginRouter = require('./routes/login');
 var siirtoRouter = require('./routes/siirto');
 //var saldoRouter = require('./routes/saldo');
 var tilitapahtumatRouter = require('./routes/tilitapahtumat');
+var nostoRouter = require('./routes/nosto');
 
 var app = express();
 
@@ -33,4 +34,5 @@ app.use('/login', loginRouter);
 app.use('/siirto', siirtoRouter);
 //app.use('/saldo', saldoRouter);
 app.use('/tilitapahtumat', tilitapahtumatRouter);
+app.use('/nosto', nostoRouter);
 module.exports = app;

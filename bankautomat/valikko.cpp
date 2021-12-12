@@ -12,7 +12,7 @@ Valikko::Valikko(QString id,  QWidget *parent) :
     ui->setupUi(this);
     idtili=id;
     objPankki=new Pankki;
-    objNosto=new Nosto;
+    objNosto=new Nosto(idtili);
     //objMainWindow=new MainWindow;
 
     timer = new QTimer(this);//Timer
@@ -56,6 +56,8 @@ void Valikko::myfunction()
 void Valikko::on_btnNosto_clicked()
 {
     //this -> close();
+
+    objNosto->setId(idtili);
     objNosto->show();
 }
 

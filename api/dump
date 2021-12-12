@@ -115,4 +115,60 @@ END$$
 
 DELIMITER ;
 ;
+USE `bank`;
+DROP procedure IF EXISTS `tapahtuma`;
+
+USE `bank`;
+DROP procedure IF EXISTS `bank`.`tapahtuma`;
+;
+
+DELIMITER $$
+USE `bank`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `tapahtuma`(in id int)
+BEGIN
+
+select * from tilitapahtumat where idTili=id order by pvm desc limit 10;
+END$$
+
+DELIMITER ;
+;
+
+
+USE `bank`;
+DROP procedure IF EXISTS `saldo`;
+
+USE `bank`;
+DROP procedure IF EXISTS `bank`.`saldo`;
+;
+
+DELIMITER $$
+USE `bank`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `saldo`(IN id1 INT)
+BEGIN
+
+select saldo from tili where idKortti=id1;
+END$$
+
+DELIMITER ;
+;
+
+USE `bank`;
+DROP procedure IF EXISTS `nosto`;
+
+DELIMITER $$
+USE `bank`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `nosto`(IN id1 INT, IN summa DOUBLE )
+BEGIN
+  DECLARE test1, test2 INT DEFAULT 0;
+  START TRANSACTION;
+  UPDATE tili SET saldo=saldo-summa WHERE idTili=id1 AND saldo>=summa;
+
+      COMMIT;
+      INSERT INTO tilitapahtumat(idTili,tapahtuma,summa,pvm) VALUES(id1,'nosto',summa, NOW());
+      
+      ROLLBACK;
+
+END$$
+
+DELIMITER ;
 
