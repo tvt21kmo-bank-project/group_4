@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const nosto = require('../models/nosto_model');
 
-router.post('/debit_nosto', function(request, response){
+router.post('/nosto', function(request, response){
     nosto.debit(request.body, function(err, dbResult){
         if(err){
             response.json(err);

@@ -15,10 +15,14 @@ class Nosto : public QDialog
     Q_OBJECT
 
 public:
-    explicit Nosto(QWidget *parent = nullptr);
+    explicit Nosto(QString idnosto, QWidget *parent = nullptr);
+    void setId(const QString &value);
     ~Nosto();
 
 private slots:
+    void naytaNostoSaldoSlot (QNetworkReply *reply);
+    void nostoSlot(QNetworkReply *reply);
+
     void on_btn20_clicked();
 
     void on_btn40_clicked();
@@ -37,7 +41,12 @@ private slots:
 
 private:
     Ui::Nosto *ui;
+    QString idtili;
 
+    QString x;
+    QNetworkAccessManager *nostoManager;
+    QNetworkAccessManager *naytaNostoSaldoManager;
+    QNetworkReply *reply;
 
 };
 
