@@ -98,7 +98,7 @@ void MainWindow::loginSlot(QNetworkReply *reply)
             ui->labelLoginDebug->setText("");
 
         }
-        else if (response_data!="true" && yritykset < 2){
+        else if (response_data!="true" && yritykset <2){
             //qDebug()<<"Väärä tunnus";
             ui->labelLoginDebug->setText("PIN-koodi väärin, tarkista PIN.");
             //QThread::msleep(2000);
@@ -106,7 +106,7 @@ void MainWindow::loginSlot(QNetworkReply *reply)
 }
 
 
-        else{
+        else {
             ui->lineEditPassword->setText("");
             ui->lineEditUsername->setText("");
             qDebug()<<"tunnus 3x väärin, suljetaan";
