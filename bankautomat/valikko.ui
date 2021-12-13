@@ -11,13 +11,16 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Group IV Banking Systems Incorporated</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
   </property>
   <widget class="QPushButton" name="btnSaldo">
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>170</y>
+     <y>260</y>
      <width>111</width>
      <height>61</height>
     </rect>
@@ -30,7 +33,7 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>260</y>
+     <y>350</y>
      <width>111</width>
      <height>61</height>
     </rect>
@@ -43,63 +46,13 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>350</y>
+     <y>440</y>
      <width>111</width>
      <height>61</height>
     </rect>
    </property>
    <property name="text">
     <string>Tilitapahtumat</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelMainTitle">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>20</y>
-     <width>951</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>DejaVu Serif</family>
-     <pointsize>14</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
-   <property name="text">
-    <string>Group IV Lehman Brothers</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelMainMenuWelcome">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>80</y>
-     <width>181</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Tervetuloa pankkiin!</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelMainMenuCustomerInfoTitle">
-   <property name="geometry">
-    <rect>
-     <x>660</x>
-     <y>80</y>
-     <width>181</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Asiakas</string>
    </property>
   </widget>
   <widget class="QTextEdit" name="textEditNaytaAsiakasTiedot">
@@ -116,10 +69,14 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>440</y>
+     <y>530</y>
      <width>111</width>
      <height>61</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 120, 0);
+</string>
    </property>
    <property name="text">
     <string>Kirjaudu ulos</string>
@@ -142,7 +99,7 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>80</y>
+     <y>170</y>
      <width>111</width>
      <height>61</height>
     </rect>
@@ -151,7 +108,79 @@
     <string>Nosto</string>
    </property>
   </widget>
+  <widget class="QLabel" name="labelBackgroundImage">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1024</width>
+     <height>768</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="bank_automat_resources.qrc">:/images/bank_automat_files/main_background_image_1.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelMainTitle">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>20</y>
+     <width>941</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>17</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>Tervetuloa omaan pankkiin,</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelHelloShowCustomerName">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>20</y>
+     <width>631</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>17</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>labelBackgroundImage</zorder>
+  <zorder>btnSaldo</zorder>
+  <zorder>btnSiirto</zorder>
+  <zorder>btnTapahtumat</zorder>
+  <zorder>textEditNaytaAsiakasTiedot</zorder>
+  <zorder>btnKirjauduUlos</zorder>
+  <zorder>btnNaytaAsiakasTiedot</zorder>
+  <zorder>btnNosto</zorder>
+  <zorder>labelMainTitle</zorder>
+  <zorder>labelHelloShowCustomerName</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="bank_automat_resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -6,6 +6,17 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    // Kirjautumisnäytön numeropainikkeiden array
+    QPushButton *numButtons[10];
+    for (int i = 0; i < 10; ++i) {
+        QString numButtonName = "Button_" + QString::number(i);
+        numButtons[i] = MainWindow::findChild<QPushButton *>(numButtonName);
+        connect(numButtons[i], SIGNAL(released()), this,
+                SLOT(numberPressed()));
+    }
+    connect(ui->Button_Clear, SIGNAL(released()), this,
+            SLOT(clearButtonPressed()));
+
     //objValikko=new Valikko(idtili);
     //objPankki=new Pankki;
 
@@ -19,7 +30,21 @@ MainWindow::~MainWindow()
     //objPankki=nullptr;
 }
 
+void MainWindow::numberPressed() {
+    QPushButton *button = (QPushButton *)sender();
+    QString buttonValue = button->text();
+    QString currentPasswordValue = ui->lineEditPassword->text();
+    if ((currentPasswordValue == "")) {
+        ui->lineEditPassword->setText(buttonValue);
+} else {
+        QString newPasswordValue = currentPasswordValue + buttonValue;
+        ui->lineEditPassword->setText(newPasswordValue);
+    }
+}
 
+void MainWindow::clearButtonPressed() {
+    ui->lineEditPassword->setText("");
+}
 
 void MainWindow::on_btnLogin_clicked()
 {
@@ -59,8 +84,8 @@ void MainWindow::loginSlot(QNetworkReply *reply)
            idtili+=QString::number(json_obj["idKortti"].toInt());
          }
         if (response_data!="false"){
-            qDebug()<<"Oikea tunnus ...avaa form";
             ui->labelLoginDebug->setText("Kirjautumistiedot oikein, avataan pankki.");
+            //qDebug()<<"Oikea tunnus ...avaa form";
             QThread::msleep(2000);
             //this->close();
             Valikko *objValikko=new Valikko(response_data);
@@ -75,7 +100,7 @@ void MainWindow::loginSlot(QNetworkReply *reply)
         }
         else if (response_data!="true" && yritykset < 2){
             //qDebug()<<"Väärä tunnus";
-            ui->labelLoginDebug->setText("Väärä tunnus ...yritä uudelleen");
+            ui->labelLoginDebug->setText("PIN-koodi väärin, tarkista PIN.");
             //QThread::msleep(2000);
            yritykset++;
 }
@@ -88,7 +113,6 @@ void MainWindow::loginSlot(QNetworkReply *reply)
             ui->labelLoginDebug->setText("Syötit tunnuksen liian monesti väärin, suljetaan!");
             QThread::msleep(2000);
                 this->close();
-
+}
 }
 
-}

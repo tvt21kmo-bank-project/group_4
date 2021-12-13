@@ -28,10 +28,10 @@ public:
 private slots:
 
     void loginSlot (QNetworkReply *reply);
-
-
-
     void on_btnLogin_clicked();
+    void numberPressed();
+    void clearButtonPressed();
+
 
 
 private:

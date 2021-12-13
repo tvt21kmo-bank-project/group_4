@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Group IV Banking Systems Incorporated</string>
   </property>
   <widget class="QPushButton" name="btn20">
    <property name="geometry">
@@ -131,7 +131,6 @@
    <property name="font">
     <font>
      <pointsize>20</pointsize>
-     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
