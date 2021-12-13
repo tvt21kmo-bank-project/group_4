@@ -129,13 +129,14 @@
     <rect>
      <x>40</x>
      <y>20</y>
-     <width>941</width>
+     <width>331</width>
      <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <pointsize>17</pointsize>
+     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -146,18 +147,19 @@
     <string>Tervetuloa omaan pankkiin,</string>
    </property>
   </widget>
-  <widget class="QLabel" name="labelHelloShowCustomerName">
+  <widget class="QLabel" name="labelMainTitleNimi">
    <property name="geometry">
     <rect>
      <x>350</x>
      <y>20</y>
-     <width>631</width>
+     <width>521</width>
      <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <pointsize>17</pointsize>
+     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -177,7 +179,7 @@
   <zorder>btnNaytaAsiakasTiedot</zorder>
   <zorder>btnNosto</zorder>
   <zorder>labelMainTitle</zorder>
-  <zorder>labelHelloShowCustomerName</zorder>
+  <zorder>labelMainTitleNimi</zorder>
  </widget>
  <resources>
   <include location="bank_automat_resources.qrc"/>
