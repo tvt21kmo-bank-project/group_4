@@ -198,7 +198,7 @@
      </font>
     </property>
     <property name="echoMode">
-     <enum>QLineEdit::Normal</enum>
+     <enum>QLineEdit::Password</enum>
     </property>
    </widget>
    <widget class="QLabel" name="labelMainTitle">
@@ -289,30 +289,6 @@
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
-   </widget>
-   <widget class="QWidget" name="verticalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>580</x>
-      <y>560</y>
-      <width>261</width>
-      <height>80</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QPushButton" name="btnLogin">
-       <property name="font">
-        <font>
-         <pointsize>16</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Kirjaudu</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
    </widget>
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
@@ -529,6 +505,27 @@
      <pixmap resource="bank_automat_resources.qrc">:/images/bank_automat_files/main_background_image_1.png</pixmap>
     </property>
    </widget>
+   <widget class="QPushButton" name="btnLogin">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>580</y>
+      <width>250</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(51, 209, 122);</string>
+    </property>
+    <property name="text">
+     <string>Kirjaudu</string>
+    </property>
+   </widget>
    <zorder>labelBackgroundImage</zorder>
    <zorder>lineEditUsername</zorder>
    <zorder>lineEditPassword</zorder>
@@ -537,8 +534,8 @@
    <zorder>label_2</zorder>
    <zorder>label_3</zorder>
    <zorder>labelLoginDebug</zorder>
-   <zorder>verticalLayoutWidget</zorder>
    <zorder>gridLayoutWidget</zorder>
+   <zorder>btnLogin</zorder>
   </widget>
  </widget>
  <resources>
