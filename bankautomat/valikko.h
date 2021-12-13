@@ -48,8 +48,6 @@ private slots:
     void naytaAsiakasTiedotSlot (QNetworkReply *reply);
     void naytaTilitapahtumatSlot (QNetworkReply *reply);
 
-    void naytaAsiakkaanNimi(QNetworkReply *reply);
-
 
 private:
     Ui::Valikko *ui;

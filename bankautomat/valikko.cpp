@@ -156,19 +156,7 @@ void Valikko::naytaAsiakasTiedotSlot(QNetworkReply *reply)
     QString asiakas;
     foreach (const QJsonValue &value, json_array) {
     QJsonObject json_obj = value.toObject();
-    asiakas+=QString(json_obj["enimi"].toString())+" "+json_obj["snimi"].toString()+"\r"+json_obj["osoite"].toString()+"\r"+json_obj["puhnro"].toString();
+    asiakas+=QString(json_obj["enimi"].toString())+" "+json_obj["snimi"].toString()+"\r";
     }
-    ui->textEditShowCustomerInformation->setText(asiakas);
-}
-
-void Valikko::naytaAsiakkaanNimi(QNetworkReply *reply) {
-    QByteArray response_data=reply->readAll();
-    QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
-    QJsonArray json_array = json_doc.array();
-    QString asiakkaanEtunimi;
-    foreach (const QJsonValue &value, json_array) {
-        QJsonObject json_obj = value.toObject();
-        asiakkaanEtunimi+=QString(json_obj["enimi"].toString())+" "+json_obj["snimi"].toString();
-    }
-    ui->labelHelloShowCustomerName->setText(asiakkaanEtunimi);
+    ui->labelMainTitleNimi->setText(asiakas);
 }
