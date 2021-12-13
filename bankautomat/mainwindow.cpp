@@ -16,10 +16,6 @@ MainWindow::MainWindow(QWidget *parent)
     }
     connect(ui->Button_Clear, SIGNAL(released()), this,
             SLOT(clearButtonPressed()));
-
-    //objValikko=new Valikko(idtili);
-    //objPankki=new Pankki;
-
 }
 
 MainWindow::~MainWindow()
@@ -61,12 +57,6 @@ void MainWindow::on_btnLogin_clicked()
     loginManager = new QNetworkAccessManager(this);
     connect(loginManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(loginSlot(QNetworkReply*)));
     reply = loginManager->post(request, QJsonDocument(json).toJson());
-
-    // Tallennetaan käyttäjätunnus lineEditUsername-kentästä muuttujaan
-    //QString userID = ui->lineEditUsername->text();
-    // Tai sama suoraan integeriks
-    //korttiID = ui->lineEditUsername->text().toInt();
-    //qDebug()<<korttiID;
 }
 
 void MainWindow::loginSlot(QNetworkReply *reply)

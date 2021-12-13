@@ -80,7 +80,6 @@ background-color: rgb(255, 120, 0);
     <rect>
      <x>40</x>
      <y>20</y>
-
      <width>940</width>
      <height>40</height>
     </rect>
@@ -88,7 +87,6 @@ background-color: rgb(255, 120, 0);
    <property name="font">
     <font>
      <pointsize>17</pointsize>
-     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -111,7 +109,6 @@ background-color: rgb(255, 120, 0);
    <property name="font">
     <font>
      <pointsize>17</pointsize>
-     <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
@@ -198,12 +195,12 @@ color: rgb(94, 92, 100);</string>
    </property>
   </widget>
   <zorder>labelBackgroundImage</zorder>
+  <zorder>horizontalLayoutWidget</zorder>
+  <zorder>textEditShowCustomerInformation</zorder>
   <zorder>textEditNaytaAsiakasTiedot</zorder>
   <zorder>btnKirjauduUlos</zorder>
   <zorder>labelMainTitle</zorder>
-
   <zorder>labelMainTitleNimi</zorder>
-
  </widget>
  <resources>
   <include location="bank_automat_resources.qrc"/>

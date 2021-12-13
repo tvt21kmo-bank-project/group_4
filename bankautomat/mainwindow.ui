@@ -213,7 +213,6 @@
     <property name="font">
      <font>
       <pointsize>17</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -521,7 +520,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(51, 209, 122);</string>
+     <string notr="true">background-color: rgb(50, 205, 50);</string>
     </property>
     <property name="text">
      <string>Kirjaudu</string>

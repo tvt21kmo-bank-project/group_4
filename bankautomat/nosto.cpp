@@ -118,7 +118,7 @@ void Nosto::naytaNostoSaldoSlot(QNetworkReply *reply)
     QString saldo;
     foreach (const QJsonValue &value, json_array) {
     QJsonObject json_obj = value.toObject();
-    saldo+=QString("Tilisi saldo on")+" "+QString::number(json_obj["saldo"].toInt());
+    saldo+=QString("Tilisi saldo on")+" "+QString::number(json_obj["saldo"].toInt())+"€";
     }
     ui->textEditNostoTiedot->setText(saldo);
 }
