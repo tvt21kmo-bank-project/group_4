@@ -17,8 +17,8 @@ void Pankki::setId(const QString &value)
 {
     idtili = value;
     ui->laOmatilinro->setText(idtili);
-
 }
+
 void Pankki::on_btnDebit_clicked()
 {
     QJsonObject json; //luodaan JSON objekti ja lisätään data
@@ -33,8 +33,8 @@ void Pankki::on_btnDebit_clicked()
     QString headerData = "Basic " + data;
     request.setRawHeader( "Authorization", headerData.toLocal8Bit() );
     debitManager = new QNetworkAccessManager(this);
-    connect(debitManager, SIGNAL(finished(QNetworkReply*)),
-    this, SLOT(debitSlot(QNetworkReply*)));
+    connect(debitManager, SIGNAL(finished(QNetworkReply*)), this,
+            SLOT(debitSlot(QNetworkReply*)));
     reply = debitManager->post(request, QJsonDocument(json).toJson());
 }
 
@@ -53,6 +53,7 @@ void Pankki::debitSlot(QNetworkReply *reply)
         ui->leDebitSumma->setText("");
     }
 }
+
 void Pankki::on_btnCredit_clicked()
 {
 
@@ -63,10 +64,7 @@ void Pankki::creditSlot(QNetworkReply *reply)
 
 }
 
-
-
 void Pankki::on_btnLogoutPankki_clicked()
 {
     this->close();
 }
-
