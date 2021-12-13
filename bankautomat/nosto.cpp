@@ -91,16 +91,8 @@ void Nosto::nostoSlot(QNetworkReply *reply)
     qDebug()<<response_data;
     //if(response_data == "1"){
     if (response_data!="false"){
-        //ui->textEditNostoTiedot->setText("Nosto onnistui\r");
-        QByteArray response_data=reply->readAll();
-        QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
-        QJsonArray json_array = json_doc.array();
-        QString saldo;
-        foreach (const QJsonValue &value, json_array) {
-        QJsonObject json_obj = value.toObject();
-        saldo+=QString("Tilisi saldo on")+" "+QString::number(json_obj["saldo"].toInt());
-        }
-        ui->textEditNostoTiedot->setText(saldo);
+        ui->textEditNostoTiedot->setText("Nosto onnistui\r");
+
 
         //ui->leDebitSaaja->setText("");
         //ui->leDebitSumma->setText("");
@@ -110,6 +102,7 @@ void Nosto::nostoSlot(QNetworkReply *reply)
         //ui->leDebitSaaja->setText("");
         //ui->leDebitSumma->setText("");
     }
+
 }
 void Nosto::on_btnTakaisin_clicked()
 {
@@ -119,13 +112,6 @@ void Nosto::on_btnTakaisin_clicked()
 void Nosto::naytaNostoSaldoSlot(QNetworkReply *reply)
 {
 
-
-    //qDebug()<<json_doc;
-    //QString asiakas=json_doc["enimi"].toString()+" : "+json_doc["snimi"].toString()+" : "+json_doc["osoite"].toString()+" : "+json_doc["puhno"].toString();
-    //ui->textEditNaytaAsiakasTiedot->setText(asiakas);
-//}
-
-    //qDebug()<<json_doc;
     QByteArray response_data=reply->readAll();
     QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
     QJsonArray json_array = json_doc.array();
