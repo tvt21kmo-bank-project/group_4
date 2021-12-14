@@ -1,0 +1,10 @@
+debug/main.o
+debug/mainwindow.o
+debug/pankki.o
+debug/valikko.o
+debug/nosto.o
+debug/qrc_bank_automat_resources.o
+debug/moc_mainwindow.o
+debug/moc_pankki.o
+debug/moc_valikko.o
+debug/moc_nosto.o

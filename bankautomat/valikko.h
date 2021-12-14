@@ -3,7 +3,7 @@
 
 #include "nosto.h"
 #include "pankki.h"
-
+#include <QDebug>
 #include <QDialog>
 #include <QtNetwork>
 #include <QNetworkAccessManager>
@@ -29,10 +29,10 @@ public:
     ~Valikko();
 
 public slots:
-   void myfunction();
+
 
 private slots:
-
+    void stopSLOT();//ajastin 13_12
     void on_btnNosto_clicked();
 
     void on_btnSaldo_clicked();
@@ -59,7 +59,8 @@ private:
     QNetworkReply *reply;
     int valinta;
     QString idtili;
-    QTimer *timer;
+    int counter;//ajastin 13_12
+    QTimer *objTimer; //Ajastin 13_12
 };
 
 #endif // VALIKKO_H
