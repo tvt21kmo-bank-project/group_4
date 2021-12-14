@@ -1,6 +1,6 @@
 #ifndef NOSTO_H
 #define NOSTO_H
-
+#include <QTimer>//ajastin 14_12
 #include <QDialog>
 #include <QtNetwork>
 #include <QNetworkAccessManager>
@@ -20,6 +20,8 @@ public:
     ~Nosto();
 
 private slots:
+
+    void stopSLOT();//ajastin 14_12
     void naytaNostoSaldoSlot (QNetworkReply *reply);
     void nostoSlot(QNetworkReply *reply);
 
@@ -47,7 +49,8 @@ private:
     QNetworkAccessManager *nostoManager;
     QNetworkAccessManager *naytaNostoSaldoManager;
     QNetworkReply *reply;
-
+    int counter;//ajastin 13_12
+    QTimer *objTimer; //Ajastin 13_12
 };
 
 #endif // NOSTO_H

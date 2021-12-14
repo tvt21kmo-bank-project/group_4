@@ -19,11 +19,27 @@ Nosto::Nosto(QString idnosto, QWidget *parent) :
     this, SLOT(naytaNostoSaldoSlot(QNetworkReply*)));
     reply = naytaNostoSaldoManager->get(request);
 
+    objTimer= new QTimer;//ajastin 13_12
+    connect(objTimer,SIGNAL(timeout()),this,SLOT(stopSLOT()));//ajastin 13_12
+    counter=0; objTimer->start(5000);//ajastin 13-12
+
 }
 
 Nosto::~Nosto()
 {
     delete ui;
+}
+
+void Nosto::stopSLOT()
+{
+    qDebug()<< "Aika ="+counter;
+       counter++;
+       if(counter==2)
+       {
+           objTimer->stop();
+           delete objTimer;
+           objTimer=nullptr;
+           this->close();
 }
 
 void Nosto::setId(const QString &value)
@@ -35,37 +51,45 @@ void Nosto::setId(const QString &value)
 }
 void Nosto::on_btn20_clicked()
 {
+    objTimer->start(5000);//ajastin 13-12
     ui->leSsumma->setText("20");
 
 }
 
 void Nosto::on_btn40_clicked()
 {
+    objTimer->start(5000);//ajastin 13-12
     ui->leSsumma->setText("40");
 }
 
 void Nosto::on_btn60_clicked()
 {
+
+    objTimer->start(5000);//ajastin 13-12
     ui->leSsumma->setText("60");
 }
 
 void Nosto::on_btn100_clicked()
 {
+    objTimer->start(5000);//ajastin 13-12
     ui->leSsumma->setText("100");
 }
 
 void Nosto::on_btn200_clicked()
 {
+    objTimer->start(5000);//ajastin 13-12
     ui->leSsumma->setText("200");
 }
 
 void Nosto::on_btn500_clicked()
 {
+    objTimer->start(5000);//ajastin 13-12
     ui->leSsumma->setText("500");
 }
 
 void Nosto::on_btnHyvaksy_clicked()
 {
+    objTimer->start(5000);//ajastin 13-12
     QJsonObject json;
     json.insert("id1",ui->omaNostotili->text());
 
@@ -122,4 +146,4 @@ void Nosto::naytaNostoSaldoSlot(QNetworkReply *reply)
     }
     ui->textEditNostoTiedot->setText(saldo);
 }
-
+};
