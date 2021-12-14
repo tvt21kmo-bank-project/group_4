@@ -1,7 +1,7 @@
 #include "valikko.h"
 #include <QDebug>
 #include "ui_valikko.h"
-
+#include <QTimer>
 
 Valikko::Valikko(QString id,  QWidget *parent) :
 

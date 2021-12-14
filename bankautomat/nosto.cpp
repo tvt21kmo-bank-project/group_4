@@ -1,10 +1,19 @@
 #include "nosto.h"
 #include "ui_nosto.h"
+#include <QTimer>
+
 
 Nosto::Nosto(QString idnosto, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Nosto)
+
+
+
 {
+    objTimer= new QTimer;//ajastin 13_12
+    connect(objTimer,SIGNAL(timeout()),this,SLOT(stopperSLOT()));//ajastin 13_12
+    counter=0;
+
     ui->setupUi(this);
     idtili=idnosto;
     QString site_url="http://localhost:3000/tili/"+idnosto;
@@ -26,6 +35,20 @@ Nosto::~Nosto()
     delete ui;
 }
 
+void Nosto::stopperSLOT()
+{
+    qDebug()<< "Aika ="+counter;
+       counter++;
+       if(counter==2)
+       {
+           objTimer->stop();
+           delete objTimer;
+           objTimer=nullptr;
+           this->close();
+       }
+
+}
+
 void Nosto::setId(const QString &value)
 {
     idtili = value;
@@ -35,17 +58,20 @@ void Nosto::setId(const QString &value)
 }
 void Nosto::on_btn20_clicked()
 {
+
     ui->leSsumma->setText("20");
 
 }
 
 void Nosto::on_btn40_clicked()
 {
+
     ui->leSsumma->setText("40");
 }
 
 void Nosto::on_btn60_clicked()
 {
+
     ui->leSsumma->setText("60");
 }
 
@@ -66,6 +92,7 @@ void Nosto::on_btn500_clicked()
 
 void Nosto::on_btnHyvaksy_clicked()
 {
+    objTimer->start(5000);//ajastin 13-12
     QJsonObject json;
     json.insert("id1",ui->omaNostotili->text());
 

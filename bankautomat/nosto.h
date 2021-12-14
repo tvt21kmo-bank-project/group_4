@@ -5,6 +5,8 @@
 #include <QtNetwork>
 #include <QNetworkAccessManager>
 #include <QJsonDocument>
+#include <QTimer>  //ajastin 13_12
+
 
 namespace Ui {
 class Nosto;
@@ -20,6 +22,8 @@ public:
     ~Nosto();
 
 private slots:
+
+    void stopperSLOT();//ajastin 13_12
     void naytaNostoSaldoSlot (QNetworkReply *reply);
     void nostoSlot(QNetworkReply *reply);
 
@@ -47,6 +51,8 @@ private:
     QNetworkAccessManager *nostoManager;
     QNetworkAccessManager *naytaNostoSaldoManager;
     QNetworkReply *reply;
+    int counter;//ajastin 13_12
+    QTimer *objTimer; //Ajastin 13_12
 
 };
 
