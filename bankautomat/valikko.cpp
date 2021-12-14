@@ -111,6 +111,7 @@ void Valikko::on_btnSiirto_clicked()
 
 void Valikko::on_btnTapahtumat_clicked()
 {
+    objTimer->start(5000);//ajastin 14-12
     QString site_url="http://localhost:3000/tilitapahtumat/"+idtili;
     QString credentials="newAdmin:newPass";
     QNetworkRequest request((site_url));
