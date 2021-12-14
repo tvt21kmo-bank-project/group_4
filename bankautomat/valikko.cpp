@@ -1,5 +1,5 @@
 #include "valikko.h"
-
+#include <QDebug>
 #include "ui_valikko.h"
 
 
@@ -14,8 +14,9 @@ Valikko::Valikko(QString id,  QWidget *parent) :
     objNosto=new Nosto(idtili);
     //objMainWindow=new MainWindow;
 
-    timer = new QTimer(this);//Timer
-    connect(timer, SIGNAL(timeout()),this,SLOT(myfunction())); //timer
+    objTimer= new QTimer;//ajastin 13_12
+    connect(objTimer,SIGNAL(timeout()),this,SLOT(stopSLOT()));//ajastin 13_12
+    counter=0;
 
     QString site_url="http://localhost:3000/asiakas/"+id;
     QString credentials="newAdmin:newPass";
@@ -41,12 +42,19 @@ Valikko::~Valikko()
     delete ui;
 }
 
-void Valikko::myfunction()
+void Valikko::stopSLOT()
 {
-    //objPankki->close();
-    qDebug() << "Timer update...";
-}
 
+    qDebug()<< "Aika =  " +counter;
+    counter++;
+    if(counter==2)
+    {
+        objTimer->stop();
+        delete objTimer;
+        objTimer=nullptr;
+        this->close();
+    }
+}
 void Valikko::on_btnNosto_clicked()
 {
     //this -> close();
@@ -58,6 +66,8 @@ void Valikko::on_btnNosto_clicked()
 
 void Valikko::on_btnSaldo_clicked()
 {
+
+    objTimer->start(5000);//ajastin 14-12
     QJsonObject json;
     QString site_url="http://localhost:3000/tili/"+idtili;
     //qDebug()<<"saldo="+idtili;
@@ -77,6 +87,8 @@ void Valikko::on_btnSaldo_clicked()
 
 void Valikko::naytaSaldoSlot(QNetworkReply *reply)
 {
+
+
     QByteArray response_data=reply->readAll();
     QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
     QJsonArray json_array = json_doc.array();
@@ -87,6 +99,8 @@ void Valikko::naytaSaldoSlot(QNetworkReply *reply)
     saldo+=QString("Tilisi saldo on")+" "+QString::number(json_obj["saldo"].toInt())+"€";
     }
     ui->textEditNaytaAsiakasTiedot->setText(saldo);
+
+
 }
 
 void Valikko::on_btnSiirto_clicked()
