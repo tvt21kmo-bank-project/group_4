@@ -17,7 +17,7 @@ Valikko::Valikko(QString id,  QWidget *parent) :
     objTimer= new QTimer;//ajastin 13_12
     connect(objTimer,SIGNAL(timeout()),this,SLOT(stopSLOT()));//ajastin 13_12
     counter=0;
-
+    objTimer->start(8000);
     QString site_url="http://localhost:3000/asiakas/"+id;
     QString credentials="newAdmin:newPass";
     QNetworkRequest request((site_url));
@@ -47,7 +47,7 @@ void Valikko::stopSLOT()
 
     qDebug()<< "Aika =  " +counter;
     counter++;
-    if(counter==2)
+    if(counter==1)
     {
         objTimer->stop();
         delete objTimer;
@@ -57,6 +57,7 @@ void Valikko::stopSLOT()
 }
 void Valikko::on_btnNosto_clicked()
 {
+    objTimer->stop();
     //this -> close();
     objNosto->setId(idtili);
     objNosto->show();
@@ -66,8 +67,7 @@ void Valikko::on_btnNosto_clicked()
 
 void Valikko::on_btnSaldo_clicked()
 {
-
-    objTimer->start(5000);//ajastin 14-12
+    objTimer->start(8000);//ajastin 14-12
     QJsonObject json;
     QString site_url="http://localhost:3000/tili/"+idtili;
     //qDebug()<<"saldo="+idtili;
@@ -105,13 +105,14 @@ void Valikko::naytaSaldoSlot(QNetworkReply *reply)
 
 void Valikko::on_btnSiirto_clicked()
 {
+    objTimer->stop();
     objPankki->setId(idtili);
     objPankki->show();
 }
 
 void Valikko::on_btnTapahtumat_clicked()
 {
-    objTimer->start(5000);//ajastin 14-12
+    objTimer->start(8000);//ajastin 14-12
     QString site_url="http://localhost:3000/tilitapahtumat/"+idtili;
     QString credentials="newAdmin:newPass";
     QNetworkRequest request((site_url));

@@ -34,6 +34,7 @@ private:
     QNetworkAccessManager *debitManager;
     QNetworkReply *reply;
     QString idtili;
+    QTimer *objTimer; //Ajastin 13_12
 };
 
 #endif // PANKKI_H
