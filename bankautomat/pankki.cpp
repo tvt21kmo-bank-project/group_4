@@ -5,7 +5,9 @@ Pankki::Pankki(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Pankki)
 {
+
     ui->setupUi(this);
+
 }
 
 Pankki::~Pankki()
@@ -53,6 +55,9 @@ void Pankki::debitSlot(QNetworkReply *reply)
         ui->leDebitSumma->setText("");
     }
 }
+
+
+
 
 void Pankki::on_btnCredit_clicked()
 {
